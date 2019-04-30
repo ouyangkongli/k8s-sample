@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name:  eureka-v2
+  labels:
+    name:  eureka-v2
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name:  eureka-v2
+    spec:
+      containers:
+      - image:  registry.cn-shanghai.aliyuncs.com/ouyangkongli/test:v2
+        name:  eureka-v2
+        resources:
+          requests:
+            cpu: "20m"
+            memory: "255M"
+        args: ["--server.port=8762"]
+        ports:
+        - containerPort: 8761
+        - containerPort: 8762
+        - containerPort: 8763
+        

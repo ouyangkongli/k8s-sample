@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: eureka-v2
+spec:
+  selector:
+    name: eureka-v2
+  type: NodePort
+  ports:
+  - port: 8761
+    nodePort: 30005
+    name: eureka-30005-8761
+  - port: 8762
+    nodePort: 30006
+    name: eureka-30006-8762
+  - port: 8763
+    nodePort: 30007
+    name: eureka-30007-8763
